@@ -1,0 +1,15 @@
+@"
+# 前端忽略
+frontend/node_modules/
+frontend/dist/
+frontend/.env
+
+# 后端忽略
+backend/target/
+backend/.settings/
+backend/.idea/
+backend/*.iml
+
+# 通用忽略
+.DS_Store
+"@ | Out-File -Encoding utf8 .gitignore

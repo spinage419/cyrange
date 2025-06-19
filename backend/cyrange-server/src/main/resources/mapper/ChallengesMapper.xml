@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cyrange.mapper.ChallengesMapper">
+    <select id="getUserChallengeRecords" resultType="UserChallengeRecord">
+        SELECT challenge_id, is_correct
+        FROM user_challenge_record
+        WHERE user_id = #{userId}
+    </select>
+
+    <select id="existsByUserIdAndQuestionIdAndIsCorrect" resultType="boolean">
+        SELECT COUNT(*) > 0
+        FROM user_challenge_record
+        WHERE user_id = #{userId}
+          AND challenge_id = #{questionId}
+          AND is_correct = #{isCorrect}
+    </select>
+
+    <insert id="insert" parameterType="UserChallengeRecord">
+        INSERT INTO user_challenge_record (user_id, challenge_id, is_correct,finish_time)
+        VALUES (#{userId}, #{challengeId}, #{isCorrect},#{finishTime})
+    </insert>
+
+
+    <update id="incrementParticipants">
+        UPDATE cyrangechallenges
+        SET participants = cyrangechallenges.participants + 1
+        WHERE question_id = #{questionId}
+    </update>
+
+    <update id="addUserRecord">
+        UPDATE  user
+        SET  total_score = total_score  +  #{point}
+        WHERE  id =  #{userId}
+    </update>
+
+
+</mapper>

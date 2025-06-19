@@ -1,0 +1,43 @@
+server:
+  port: 8080
+
+spring:
+  profiles:
+    active: dev
+  main:
+    allow-circular-references: true
+  datasource:
+      druid:
+        driver-class-name: ${cyrange.datasource.driver-class-name}
+        url: jdbc:mysql://${cyrange.datasource.host}:${cyrange.datasource.port}/${cyrange.datasource.database}?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&useSSL=false&allowPublicKeyRetrieval=true
+        username: ${cyrange.datasource.username}
+        password: ${cyrange.datasource.password}
+  redis:
+    host: ${cyrange.redis.host}
+    port: ${cyrange.redis.port}
+    password:
+
+mybatis:
+  #mapper配置文件
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.cyrange.entity
+  configuration:
+    #开启驼峰命名
+    map-underscore-to-camel-case: true
+
+cyrange:
+  jwt:
+    # 设置jwt签名加密时使用的秘钥
+    admin-secret-key: itcast
+    # 设置jwt过期时间
+    admin-ttl: 7200000
+    # 设置前端传递过来的令牌名称
+    admin-token-name: token
+    user-secret-key: itheima
+    user-ttl: 7200000
+    user-token-name: authentication
+  kubernetes:
+    master: http://127.0.0.1:6443
+    #token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImpBQmhleU9ZT09aSnVBa185MjNWUnFHc0UxU2R1REpPeU83TDZ2cDNCUHMifQ.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6InBlcm1hbmVudC10b2tlbiIsImt1YmVybmV0ZXMuaW8vc2VydmljZWFjY291bnQvc2VydmljZS1hY2NvdW50Lm5hbWUiOiJhZG1pbi11c2VyIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiNTJlZjYxYzctY2RjMS00OTFjLWJhMWItZjcwZWU4M2M3ZTE5Iiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6YWRtaW4tdXNlciJ9.pW7PjO3U5_j_yTDHE17OY6LhTe1HLMkeulAD2Rf-3jw1utsQrE4CoxXuNEJj_FoGt8zlSbORIhgesvdEUnkg1yYPl60t-HhTv5ur2R1K8v5ygIByEciI6rqEE51JYiVwLkpCSxQsamK2ARP8I87a5oF6kQKP004fRjsJEkwtAkStHhn1NJUyb3nQFawdmvXoiUJI25R-IdfmgUTMFwyle2fXq0uyTmKxTfdjW5OKl-upAzKNDaIC-rQxdpg7i4nmFlszHCdrt5hzc64__aRBIhFechIpHBESskCGOtlw5JK4e303_og8Hht17nIsST61dQyMgCuU9X9gfUI1xPmgvQ
+    token: eyJhbGciOiJSUzI1NiIsImtpZCI6ImdhX1BoNHlXYWh5cldqN2xSUXg4bG1FM29iNTQwemROQ3cySnBRTTd0Zk0ifQ.eyJhdWQiOlsiaHR0cHM6Ly9rdWJlcm5ldGVzLmRlZmF1bHQuc3ZjLmNsdXN0ZXIubG9jYWwiXSwiZXhwIjoyMDU4MzQ3NDM2LCJpYXQiOjE3NDI5ODc0MzYsImlzcyI6Imh0dHBzOi8va3ViZXJuZXRlcy5kZWZhdWx0LnN2Yy5jbHVzdGVyLmxvY2FsIiwia3ViZXJuZXRlcy5pbyI6eyJuYW1lc3BhY2UiOiJteW5hbWVzcGFjZSIsInNlcnZpY2VhY2NvdW50Ijp7Im5hbWUiOiJzcHJpbmctYXBwLXNhIiwidWlkIjoiNzk5ZGU4OTQtN2JjMy00NmJhLTg0MmMtOGY3YTZhYjY0M2JjIn19LCJuYmYiOjE3NDI5ODc0MzYsInN1YiI6InN5c3RlbTpzZXJ2aWNlYWNjb3VudDpteW5hbWVzcGFjZTpzcHJpbmctYXBwLXNhIn0.jK2innfWHDGdcu5AAHkPM4piIPGKqltt5zZrhsGa46nCnlDr3sg_acOf1c5drouHX60CUbaD_EZ-yWqueIe8WYlXODVBBXJJlY7U-YewpXdiOHvee0vjg-FPoDoL5IfOPADJFYymSotvcY5HLnN0-phxcsY4wO_kQmbWeGbdA8AqB3aX4sWNavs0Z3X_aKH1Zuo8bqpASEufc9PXqXuNbmFS_L2IziJlzRU2vuqogQu7-_NYitn_FaCqPlxWctcaot5tOFdjOGuflkgtos_U9S3PVsBCjdSt_JA92Ll1iNbu_cIbtdO4-txWJQ-b2Ps_I4v8ww-9lCIKMSH6qgotPw
+    namespace: mynamespace
