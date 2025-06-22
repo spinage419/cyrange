@@ -15,6 +15,7 @@
 
 ### 个人中心展示
 ![7](https://github.com/user-attachments/assets/9ee2b44f-7d88-4743-b269-3a1fbc4edceb)
+---
 ![8](https://github.com/user-attachments/assets/ea6456b1-cf35-43a7-b538-d6dc7b7f1f77)
 
 
